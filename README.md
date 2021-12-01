@@ -8,7 +8,6 @@
 composer install
 Start databse in XAMPP
 Create "tasz" database in MySql 
-create database blog
 ```
 
 And run the initial migrations and seeders.
