@@ -13,7 +13,7 @@ Create "tasz" database in MySql
 And run the initial migrations and seeders.
 
 ```
-php artisan migrate:fresh
+Rename environment file to .env
 php artisan migrate --seed
 php artisan storage:link
 
