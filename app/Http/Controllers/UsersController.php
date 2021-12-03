@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::latest()->paginate(18)->withQueryString()
+            'users' => DB::table('users')->orderBy('created_at', 'DESC')->get()
         ]);
     }
 

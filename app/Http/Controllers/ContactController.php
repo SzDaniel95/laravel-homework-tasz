@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Mail;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -17,7 +18,7 @@ class ContactController extends Controller
     public function index()
     {
         return view('contact.index', [
-            'contacts' => Contact::latest()->paginate(18)->withQueryString()
+            'contacts' => DB::table('contacts')->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
