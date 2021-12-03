@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +18,7 @@ class ContactController extends Controller
     public function index()
     {
         return view('contact.index', [
-            'contacts' => Contact::latest()->paginate(18)->withQueryString()
+            'contacts' => DB::table('contacts')->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
@@ -42,6 +44,11 @@ class ContactController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
             'message' => 'required|min:7|max:555',
         ]);
+        Mail::send('mail', ['request' => $request], function ($m) use ($request) {
+            $m->from('no-reply@laraveltasz.fejlessz.hu', 'TASZ Laravel System');
+
+            $m->to('Y0RS99@hallgato.uni-neumann.hu')->subject('Message from Laravel user');
+        });
 
         Contact::create($attributes);
 

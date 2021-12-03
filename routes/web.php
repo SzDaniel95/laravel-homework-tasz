@@ -26,6 +26,9 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
+Route::get('/run-migrations', function () {
+    return Artisan::call('migrate:fresh', ["--seed" => true, "--force" => true]);
+    });
 
 // Admin Section
 Route::middleware('can:admin')->group(function () {
