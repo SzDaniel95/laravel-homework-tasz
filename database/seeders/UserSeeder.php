@@ -36,5 +36,11 @@ class UserSeeder extends Seeder
             'email' => 'admin.user@gmail.com',
             'password' => '$2y$10$nSK.Qff1ufK7WrtMCU91hO6aaYzwlYddFHsiTRLnEuf4XaI8OUYCy',
         ]);
+        DB::table('users')->insert([
+            'username' => 'AdminUser',
+            'name' => 'Admin Student',
+            'email' => 'Y0RS99@hallgato.uni-neumann.hu',
+            'password' => '$2y$10$nSK.Qff1ufK7WrtMCU91hO6aaYzwlYddFHsiTRLnEuf4XaI8OUYCy',
+        ]);
     }
 }
